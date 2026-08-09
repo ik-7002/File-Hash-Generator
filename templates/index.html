@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>File Hash Generator !!</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='design.css')}}">
+    </head>
+    <body>
+        <div class="navbar"></div>
+        <div class="Intro">
+            <h1>File Hash Generate !!</h1><br>
+        </div>
+        <div class="Input">
+            <form method="POST" enctype="multipart/form-data">
+                <p>Upload a file:</p>
+                <input type="file" name="file"><br><br>
+                <label for="Choose">Choose your Hash Algorithm :</label><br><br>
+                <select name="Choose" id="Choose">
+                    <option value="none">None Selected</option>
+                    <option value="sha384">sha384</option>
+                    <option value="shake_256">shake_256</option>
+                    <option value="blake2b">blake2b</option>
+                    <option value="sha1">sha1</option>
+                    <option value="md5">md5</option>
+                    <option value="sha3_256">sha3_256</option>
+                    <option value="blake2s">blake2s</option>
+                    <option value="sha3_224">sha3_224</option>
+                    <option value="sha3_512">sha3_512</option>
+                    <option value="sha3_384">sha3_384</option>
+                    <option value="sha224">sha224</option>
+                    <option value="shake_128">shake_128</option>
+                    <option value="sha512">sha512</option>
+                </select>
+                <br>
+                <p>Enter File's Official hash For Comparision:</p>
+                <input type="text" name="comp_hash"><br><br>
+                <button>Generate</button>
+            </form>
+        </div>
+        <div class="Result">
+            <br>
+            <h1>Your hash: {{result.Your_Hash}}</h1>
+            <br>
+            <h2>Compare hash: {{"Hash Matched Congo" if result.Compare_hash else "Not Matched"}}</h2><br>
+            
+        </div>
+
+        <div class="Hash_algo_explain">
+            <br>
+            <h1>Hash Algorithm:</h1><br>
+            <h2>md5 :</h2>
+            <p>An old 128-bit algorithm severely vulnerable to collision attacks, useful only for basic non-security corruption checks.</p>
+            <br>
+            <h2>sha1 :</h2>
+            <p>A legacy 160-bit algorithm that is cryptographically broken and unsafe for security or file integrity checks.</p>
+            <br>
+            <h2>sha384 :</h2>
+            <p>A truncated 384-bit variant of SHA-512 offering strong SHA-2 family security with a smaller digest size.</p>
+            <br>
+            <h2>shake_256 :</h2>
+            <p>A flexible SHA-3-based function with 256-bit security that allows you to generate a hash output of any length you want.</p>
+            <br>
+            <h2>blake2b :</h2>
+            <p>An extremely fast, cryptographically secure 64-bit algorithm that outperforms SHA-2 and SHA-3 in software speed.</p>
+            <br>
+            <h2>sha3_256 :</h2>
+            <p>A highly secure 256-bit NIST standard algorithm built on the Keccak sponge architecture as a structural alternative to SHA-2.</p>
+            <br>
+            <h2>blake2s :</h2>
+            <p>A lightweight version of BLAKE2 optimized specifically for speed on 8-bit to 32-bit processors and embedded systems.</p>
+            <br>
+            <h2>sha3_224 :</h2>
+            <p>A 224-bit SHA-3 variant designed for protocols that require shorter hash outputs with modern sponge-construction security.</p>
+            <br>
+            <h2>sha3_512 :</h2>
+            <p>The highest-security fixed-length SHA-3 algorithm, generating a 512-bit digest resistant to theoretical structural attacks.</p>
+            <br>
+            <h2>sha3_384 :</h2>
+            <p>A 384-bit SHA-3 variant offering a middle-ground security level between SHA3-256 and SHA3-512.</p>
+            <br>
+            <h2>sha224 :</h2>
+            <p>A 224-bit truncated variant of SHA-256 intended for systems requiring reduced hash output sizes.</p>
+            <br>
+            <h2>shake_128 :</h2>
+            <p>A flexible SHA-3-based function with 128-bit security that can output hash digests of arbitrary custom lengths.</p>
+            <br>
+            <h2>sha512 :</h2>
+            <p>A widely used, highly secure 512-bit SHA-2 algorithm optimized for fast performance on 64-bit processors.</p>
+            <br>
+        </div>
+    </body>
+</html>
