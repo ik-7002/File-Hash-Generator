@@ -4,14 +4,24 @@
         <link rel="stylesheet" href="{{url_for('static',filename='design.css')}}">
     </head>
     <body>
-        <div class="navbar"></div>
+        <nav class="navbar">
+            <h2>🛡 File Hash Generator</h2>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Feedback</a>
+            </div>
+        </nav>
         <div class="Intro">
-            <h1>File Hash Generate !!</h1><br>
+            <h1>File Hash Generator</h1>
+            <p>Verify file integrity and detect tampering with this secure hash generator</p>
         </div>
         <div class="Input">
             <form method="POST" enctype="multipart/form-data">
-                <p>Upload a file:</p>
+                <p>Upload a File:</p>
                 <input type="file" name="file"><br><br>
+                <hr><br>
                 <label for="Choose">Choose your Hash Algorithm :</label><br><br>
                 <select name="Choose" id="Choose">
                     <option value="none">None Selected</option>
@@ -29,22 +39,52 @@
                     <option value="shake_128">shake_128</option>
                     <option value="sha512">sha512</option>
                 </select>
-                <br>
-                <p>Enter File's Official hash For Comparision:</p>
-                <input type="text" name="comp_hash"><br><br>
-                <button>Generate</button>
+                <br><br>
+                <hr>
+                <p>Enter File's Official Hash For Comparision(Optional):</p>
+                <input type="text" name="comp_hash" placeholder="Enter Official Hash"><br><br>
+                <button>🛡️Calculate Hash
+                </button>
             </form>
-        </div>
+            </div>
+
+            {% if result and result.error_mesg %}
+            <div class="error">
+                <h3>ERROR:{{result.error_mesg}}</h3>
+            </div>
+            {% endif %}
+
+            {% if result and result.Your_Hash %}
         <div class="Result">
-            <br>
-            <h1>Your hash: {{result.Your_Hash}}</h1>
-            <br>
-            <h2>Compare hash: {{"Hash Matched Congo" if result.Compare_hash else "Not Matched"}}</h2><br>
-            
+            <h1>Your Hash:</h1>
+            <div class="Hash_box">
+                {{ result.Your_Hash }}
+            </div>
+
+        <h1>Hash Verification:</h1>
+
+        {% if result.Compare_hash is not none %}
+
+            <div class="Verify_box">
+
+                {% if result.Compare_hash %}
+                    <p>🟢 Integrity Verified — No Changes Detected</p>
+                {% else %}
+                    <p>🔴 Integrity Check Failed — Possible File Modification</p>
+                {% endif %}
+
+            </div>
+        {% else %}
+
+        <div class="Verify_box">
+            <p>🔵 Official Hash Not Provided — Verification Not Performed</p>
         </div>
 
+    {% endif %}
+    </div>
+{% endif %}
+
         <div class="Hash_algo_explain">
-            <br>
             <h1>Hash Algorithm:</h1><br>
             <h2>md5 :</h2>
             <p>An old 128-bit algorithm severely vulnerable to collision attacks, useful only for basic non-security corruption checks.</p>
