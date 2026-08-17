@@ -45,10 +45,12 @@ def Hash_Gen(file,Choose,comp_hash):
     else:
         m=m.hexdigest()
 
-    if(m==comp_hash):
-        check=True
+    if not comp_hash:
+        check = None
+    elif m == comp_hash:
+        check = True
     else:
-        check=False
+        check = False
 
     return{
         "Your_Hash":m ,
