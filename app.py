@@ -1,11 +1,11 @@
 from flask import Flask, request, render_template
 from generator import Hash_Gen
 
-main=Flask(__name__)
+app=Flask(__name__)
 
 Upload_folder='./uploads'
 
-@main.route('/',methods=['GET','POST'])
+@app.route('/',methods=['GET','POST'])
 def upload_file():
 
     result=None
